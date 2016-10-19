@@ -12,7 +12,8 @@
   "authors": [
     "Frankie Fu <ffu@google.com>",
     "Scott Miles <sjmiles@google.com>",
-    "Eric Bidelman <ebidel@gmail.com>"
+    "Eric Bidelman <ebidel@gmail.com>",
+    "Edinson Nuñez <nmedinson@gmail.com>"
   ],
   "license": "Apache-2.0",
   "ignore": [
