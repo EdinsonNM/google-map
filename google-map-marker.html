@@ -241,7 +241,11 @@ child of `google-map`.
         value: null,
         observer: '_animationChanged'
       },
-
+      myLocation: {
+        type: Boolean,
+        value: false,
+        observer: '_myLocationChanged'
+      },
       /**
        * Specifies whether the InfoWindow is open or not
        */
@@ -325,7 +329,19 @@ child of `google-map`.
         }
       }
     },
-
+    _myLocationChanged:function(){
+        if (this.marker) {
+            if(this.myLocation){
+                if (navigator.geolocation){
+                     navigator.geolocation.getCurrentPosition((function(pos) {
+                        this.latitude = pos.coords.latitude;
+                        this.longitude = pos.coords.longitude;
+                        this._updatePosition();
+                    }).bind(this), function(error) {});
+                }
+            }
+        }
+    },
     _animationChanged: function() {
       if (this.marker) {
         this.marker.setAnimation(google.maps.Animation[this.animation]);
@@ -422,6 +438,7 @@ child of `google-map`.
       this._dragEventsChanged();
       this._mouseEventsChanged();
       this._openChanged();
+      this._myLocationChanged();
       setupDragHandler_.bind(this)();
     },
 
